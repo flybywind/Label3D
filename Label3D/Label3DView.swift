@@ -47,7 +47,8 @@ public class Label3DView: UIView {
     
     public func resetLabelOnView() {
         let PI_2 = Float(M_PI*2)
-        self.layer.transform.m34 = -CGFloat(1/perspective)
+        let cx = Float(self.frame.width/2)
+        let cy = Float(self.frame.height/2)
         for label in titles {
             label.perspective = perspective
             label.font = UIFont.systemFontOfSize(fontSize)
@@ -56,12 +57,12 @@ public class Label3DView: UIView {
             let rx = RandomFloat(min: 0, max: PI_2)
             let ry = RandomFloat(min: 0, max: PI_2)
             let rz = RandomFloat(min: 0, max: PI_2)
-            
-            let radius = RandomFloat(min: 0.05, max: sphereRadius)*perspective
             label.rx = rx
             label.ry = ry
             label.rz = rz
-            label.radius = radius
+            label.cx = cx
+            label.cy = cy
+            label.radius = sphereRadius*perspective
             
             self.addSubview(label)
         }
@@ -97,27 +98,48 @@ public class Label3DView: UIView {
 
 
 class LabelSphere: UILabel {
+    
+    var cx:Float {
+        didSet {
+            self.layer.position.x = CGFloat(cos(rx) * radius + cx)
+        }
+    }
+    var cy:Float {
+        didSet {
+            self.layer.position.y = CGFloat(cos(ry) * radius + cy)
+        }
+    }
+    
     var rx:Float {
         didSet {
-            self.layer.position.x = CGFloat(cos(rx) * radius)
+            self.layer.position.x = CGFloat(cos(rx) * radius + cx)
         }
     }
     var ry:Float {
         didSet{
-            self.layer.position.y = CGFloat(cos(ry) * radius)
+            self.layer.position.y = CGFloat(cos(ry) * radius + cy)
         }
     }
     var rz:Float {
         didSet{
-            self.layer.zPosition = CGFloat(cos(rz)*radius)
+            let pz = CGFloat(cos(rz)*radius)
+            let old_pz = CGFloat(cos(oldValue)*radius)
+            self.layer.zPosition = pz
+            
+            self.setTransform3D(pz - old_pz)
             self.alpha = self.getAlpha()
         }
     }
     var radius:Float {
         didSet{
-            self.layer.position.x = CGFloat(cos(rx) * radius)
-            self.layer.position.y = CGFloat(cos(ry) * radius)
-            self.layer.zPosition = CGFloat(cos(rz)*radius)
+            self.layer.position.x = CGFloat(cos(rx) * radius + cx)
+            self.layer.position.y = CGFloat(cos(ry) * radius + cy)
+
+            let pz = CGFloat(cos(rz)*radius)
+            let old_pz = CGFloat(cos(rz)*oldValue)
+            self.layer.zPosition = pz
+            
+            self.setTransform3D(pz - old_pz)
             self.alpha = self.getAlpha()
         }
     }
@@ -137,6 +159,8 @@ class LabelSphere: UILabel {
         rx = 0
         ry = 0
         rz = 0
+        cx = 0
+        cy = 0
         radius = 0
         perspective = 10000
         super.init(frame: frame)
@@ -146,11 +170,17 @@ class LabelSphere: UILabel {
         rx = aDecoder.decodeFloatForKey("rx")
         ry = aDecoder.decodeFloatForKey("ry")
         rz = aDecoder.decodeFloatForKey("rz")
+        cx = aDecoder.decodeFloatForKey("cx")
+        cy = aDecoder.decodeFloatForKey("cy")
         radius = aDecoder.decodeFloatForKey("radius")
         perspective = aDecoder.decodeFloatForKey("perspective")
         super.init(coder: aDecoder)
     }
     
+    func setTransform3D(dz:CGFloat) {
+        let t = self.layer.transform
+        self.layer.transform = CATransform3DTranslate(t, 0, 0, dz)
+    }
     func getAlpha() -> CGFloat {
         var alpha = 2*self.layer.zPosition/CGFloat(perspective) + 0.5
         alpha = min(1.0, alpha)

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Label3D/Label3DView.swift"
-            timestampString = "473171954.377343"
+            timestampString = "473181174.917035"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "resetLabelOnView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Label3D/Label3DView.swift"
-            timestampString = "473172214.920748"
+            timestampString = "473182573.315477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "getAlpha()"
             landmarkType = "5">
          </BreakpointContent>

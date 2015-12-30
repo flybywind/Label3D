@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var frame = self.view.frame
-        let width:CGFloat = 400.0
+        let width = frame.width*0.8
         let height = width
         let px = (frame.width - width)/2
         let py = (frame.height - height)/2
@@ -28,10 +28,10 @@ class ViewController: UIViewController {
         self.view.addSubview(label3dView!)
         if let fpath = bundle.pathForResource("108", ofType: "txt") {
             label3dView?.loadLabelsFromFile(fpath)
-            label3dView?.perspective = 1000
+            label3dView?.perspective = Float(width)
             label3dView?.fontColor = UIColor.yellowColor()
-            label3dView?.sphereRadius = 0.6
-            label3dView?.fontSize = 20
+            label3dView?.sphereRadius = 0.3
+            label3dView?.fontSize = 25
             label3dView?.resetLabelOnView()
         }
     }
