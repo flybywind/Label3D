@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		40016ACA1C33E708006598D5 /* 108.des.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40016AC81C33E708006598D5 /* 108.des.txt */; };
+		40016ACB1C33E708006598D5 /* 108.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40016AC91C33E708006598D5 /* 108.txt */; };
+		40F8E4821C3288E400CE9D84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F8E4811C3288E400CE9D84 /* AppDelegate.swift */; };
+		40F8E4841C3288E400CE9D84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F8E4831C3288E400CE9D84 /* ViewController.swift */; };
+		40F8E4871C3288E400CE9D84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40F8E4851C3288E400CE9D84 /* Main.storyboard */; };
+		40F8E4891C3288E400CE9D84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F8E4881C3288E400CE9D84 /* Assets.xcassets */; };
+		40F8E48C1C3288E400CE9D84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40F8E48A1C3288E400CE9D84 /* LaunchScreen.storyboard */; };
+		40F8E49B1C3288F400CE9D84 /* Label3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 40F8E49A1C3288F400CE9D84 /* Label3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40F8E49F1C3288F400CE9D84 /* Label3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F8E4981C3288F400CE9D84 /* Label3D.framework */; };
+		40F8E4A01C3288F400CE9D84 /* Label3D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 40F8E4981C3288F400CE9D84 /* Label3D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		40F8E4A61C32894100CE9D84 /* Label3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F8E4A51C32894100CE9D84 /* Label3DView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		40F8E49D1C3288F400CE9D84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40F8E4761C3288E400CE9D84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40F8E4971C3288F400CE9D84;
+			remoteInfo = Label3D;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		40F8E4A41C3288F400CE9D84 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				40F8E4A01C3288F400CE9D84 /* Label3D.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		40016AC81C33E708006598D5 /* 108.des.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 108.des.txt; sourceTree = "<group>"; };
+		40016AC91C33E708006598D5 /* 108.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 108.txt; sourceTree = "<group>"; };
+		40F8E47E1C3288E400CE9D84 /* Label3DTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Label3DTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F8E4811C3288E400CE9D84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		40F8E4831C3288E400CE9D84 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		40F8E4861C3288E400CE9D84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		40F8E4881C3288E400CE9D84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40F8E48B1C3288E400CE9D84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		40F8E48D1C3288E400CE9D84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40F8E4981C3288F400CE9D84 /* Label3D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Label3D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F8E49A1C3288F400CE9D84 /* Label3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Label3D.h; sourceTree = "<group>"; };
+		40F8E49C1C3288F400CE9D84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40F8E4A51C32894100CE9D84 /* Label3DView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label3DView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40F8E47B1C3288E400CE9D84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F8E49F1C3288F400CE9D84 /* Label3D.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40F8E4941C3288F400CE9D84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40F8E4751C3288E400CE9D84 = {
+			isa = PBXGroup;
+			children = (
+				40F8E4801C3288E400CE9D84 /* Label3DTest */,
+				40F8E4991C3288F400CE9D84 /* Label3D */,
+				40F8E47F1C3288E400CE9D84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		40F8E47F1C3288E400CE9D84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40F8E47E1C3288E400CE9D84 /* Label3DTest.app */,
+				40F8E4981C3288F400CE9D84 /* Label3D.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40F8E4801C3288E400CE9D84 /* Label3DTest */ = {
+			isa = PBXGroup;
+			children = (
+				40F8E4811C3288E400CE9D84 /* AppDelegate.swift */,
+				40F8E4831C3288E400CE9D84 /* ViewController.swift */,
+				40F8E4851C3288E400CE9D84 /* Main.storyboard */,
+				40F8E4881C3288E400CE9D84 /* Assets.xcassets */,
+				40F8E48A1C3288E400CE9D84 /* LaunchScreen.storyboard */,
+				40F8E48D1C3288E400CE9D84 /* Info.plist */,
+				40016AC81C33E708006598D5 /* 108.des.txt */,
+				40016AC91C33E708006598D5 /* 108.txt */,
+			);
+			path = Label3DTest;
+			sourceTree = "<group>";
+		};
+		40F8E4991C3288F400CE9D84 /* Label3D */ = {
+			isa = PBXGroup;
+			children = (
+				40F8E49A1C3288F400CE9D84 /* Label3D.h */,
+				40F8E49C1C3288F400CE9D84 /* Info.plist */,
+				40F8E4A51C32894100CE9D84 /* Label3DView.swift */,
+			);
+			path = Label3D;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		40F8E4951C3288F400CE9D84 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F8E49B1C3288F400CE9D84 /* Label3D.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		40F8E47D1C3288E400CE9D84 /* Label3DTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40F8E4901C3288E400CE9D84 /* Build configuration list for PBXNativeTarget "Label3DTest" */;
+			buildPhases = (
+				40F8E47A1C3288E400CE9D84 /* Sources */,
+				40F8E47B1C3288E400CE9D84 /* Frameworks */,
+				40F8E47C1C3288E400CE9D84 /* Resources */,
+				40F8E4A41C3288F400CE9D84 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40F8E49E1C3288F400CE9D84 /* PBXTargetDependency */,
+			);
+			name = Label3DTest;
+			productName = Label3DTest;
+			productReference = 40F8E47E1C3288E400CE9D84 /* Label3DTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		40F8E4971C3288F400CE9D84 /* Label3D */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40F8E4A11C3288F400CE9D84 /* Build configuration list for PBXNativeTarget "Label3D" */;
+			buildPhases = (
+				40F8E4931C3288F400CE9D84 /* Sources */,
+				40F8E4941C3288F400CE9D84 /* Frameworks */,
+				40F8E4951C3288F400CE9D84 /* Headers */,
+				40F8E4961C3288F400CE9D84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Label3D;
+			productName = Label3D;
+			productReference = 40F8E4981C3288F400CE9D84 /* Label3D.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40F8E4761C3288E400CE9D84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = flybywind;
+				TargetAttributes = {
+					40F8E47D1C3288E400CE9D84 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					40F8E4971C3288F400CE9D84 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 40F8E4791C3288E400CE9D84 /* Build configuration list for PBXProject "Label3DTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 40F8E4751C3288E400CE9D84;
+			productRefGroup = 40F8E47F1C3288E400CE9D84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40F8E47D1C3288E400CE9D84 /* Label3DTest */,
+				40F8E4971C3288F400CE9D84 /* Label3D */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40F8E47C1C3288E400CE9D84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40016ACA1C33E708006598D5 /* 108.des.txt in Resources */,
+				40F8E48C1C3288E400CE9D84 /* LaunchScreen.storyboard in Resources */,
+				40F8E4891C3288E400CE9D84 /* Assets.xcassets in Resources */,
+				40F8E4871C3288E400CE9D84 /* Main.storyboard in Resources */,
+				40016ACB1C33E708006598D5 /* 108.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40F8E4961C3288F400CE9D84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40F8E47A1C3288E400CE9D84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F8E4841C3288E400CE9D84 /* ViewController.swift in Sources */,
+				40F8E4821C3288E400CE9D84 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40F8E4931C3288F400CE9D84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F8E4A61C32894100CE9D84 /* Label3DView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40F8E49E1C3288F400CE9D84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40F8E4971C3288F400CE9D84 /* Label3D */;
+			targetProxy = 40F8E49D1C3288F400CE9D84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		40F8E4851C3288E400CE9D84 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40F8E4861C3288E400CE9D84 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		40F8E48A1C3288E400CE9D84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40F8E48B1C3288E400CE9D84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		40F8E48E1C3288E400CE9D84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		40F8E48F1C3288E400CE9D84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		40F8E4911C3288E400CE9D84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Label3DTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = flybywind.Label3DTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		40F8E4921C3288E400CE9D84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Label3DTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = flybywind.Label3DTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		40F8E4A21C3288F400CE9D84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Label3D/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = flybywind.Label3D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		40F8E4A31C3288F400CE9D84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Label3D/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = flybywind.Label3D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40F8E4791C3288E400CE9D84 /* Build configuration list for PBXProject "Label3DTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40F8E48E1C3288E400CE9D84 /* Debug */,
+				40F8E48F1C3288E400CE9D84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40F8E4901C3288E400CE9D84 /* Build configuration list for PBXNativeTarget "Label3DTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40F8E4911C3288E400CE9D84 /* Debug */,
+				40F8E4921C3288E400CE9D84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40F8E4A11C3288F400CE9D84 /* Build configuration list for PBXNativeTarget "Label3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40F8E4A21C3288F400CE9D84 /* Debug */,
+				40F8E4A31C3288F400CE9D84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40F8E4761C3288E400CE9D84 /* Project object */;
+}
