@@ -33,7 +33,7 @@ public class Label3DView: UIView {
     public var sphereRadius:Float = 0.5
     
     var titles = [LabelSphere]()
-    
+    var factorial = Factorial()
     public func loadLabelsFromFile(fpath:String) {
         if let content = try? String(contentsOfFile: fpath, usedEncoding: nil) {
             let lines = content.componentsSeparatedByString("\n")
@@ -47,22 +47,48 @@ public class Label3DView: UIView {
     
     public func resetLabelOnView() {
         let PI = Float(M_PI)
+        let radius = sphereRadius*perspective
         let cx = Float(self.frame.width/2)
         let cy = Float(self.frame.height/2)
-        for label in titles {
+
+        // 计算在球表面均匀分布的位置
+        let rowNum = ceil(log2(Float(titles.count)))
+        let d_ry = PI/rowNum
+        var circles = [Float]()
+        var sum_circle:Float = 0
+        for i in 1 ..< Int(rowNum) {
+            let c = sin(d_ry*Float(i)) * radius
+            circles.append(c)
+            sum_circle += c
+        }
+        let dc = Float(titles.count)/sum_circle
+        var circle_num = [Int](count: circles.count, repeatedValue: 0)
+        var sum_label = 0
+        for i in 1 ..< Int(rowNum) {
+            circle_num[i-1] = (Int(dc*circles[i-1]) + 1)
+            sum_label += circle_num[i-1]
+        }
+        var locLabel = [CGPoint](count:sum_label, repeatedValue: CGPoint())
+        var li = 0
+        for (i, cn) in circle_num.enumerate() {
+            for j in 0 ..< cn {
+                locLabel[li].y = CGFloat(d_ry * Float(i+1))
+                locLabel[li++].x = CGFloat(2*PI/Float(cn)*Float(j))
+            }
+        }
+        
+        for (i, label) in titles.enumerate() {
             label.perspective = perspective
             label.font = UIFont.systemFontOfSize(fontSize)
             label.textColor = fontColor
             label.sizeToFit()
-            let rxz = RandomFloat(min: 0, max: PI*2)
-            let ry = RandomFloat(min: 0, max: PI)
-//            let rz = RandomFloat(min: 0, max: PI_2)
-            label.rxz = rxz
-            label.ry = ry
-//            label.rz = rz
+            let rxz = locLabel[i].x
+            let ry = locLabel[i].y
+            label.rxz = Float(rxz)
+            label.ry = Float(ry)
             label.cx = cx
             label.cy = cy
-            label.radius = sphereRadius*perspective
+            label.radius = radius
             
             self.addSubview(label)
         }
@@ -87,15 +113,10 @@ public class Label3DView: UIView {
             label.rxz += th
         }
     }
-    // TODO: 绕着x轴转，和yz平面的夹角变，但是rx不变
+    // 绕着x轴转，和yz平面的夹角变，但是rx不变
     func scrollY(th:Float) {
-        print("========== diff of scroll Y:\(th) ==========")
         for label in titles {
-            let old_ry = label.ry
-            let old_rxz = label.rxz
-            print("old ry:\(old_ry), old rxz:\(old_rxz)")
             label.ryz += th
-            print("new ry:\(label.ry), new rxz:\(label.rxz)")
         }
     }
 }
@@ -166,6 +187,8 @@ class LabelSphere: UILabel {
             }
         }
     }
+    // 辅助属性：
+    // label和x轴夹角
     var rx:Float {
         get {
             let (px, _, _) = getXYZ()
@@ -237,4 +260,18 @@ class LabelSphere: UILabel {
 
 public func RandomFloat(min min: Float, max: Float) -> Float {
     return (Float(arc4random()) / Float(UInt32.max)) * (max - min) + min
+}
+
+public func Factorial() -> (Int -> UInt64) {
+    var ret = [Int:UInt64]()
+    ret[1] = 1
+    func inner(n:Int) -> UInt64 {
+        if let r = ret[n] {
+            return r
+        } else {
+            return UInt64(n)*inner(n-1)
+        }
+    }
+    
+    return inner
 }
