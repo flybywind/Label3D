@@ -46,7 +46,7 @@ public class Label3DView: UIView {
     }
     
     public func resetLabelOnView() {
-        let PI_2 = Float(M_PI*2)
+        let PI = Float(M_PI)
         let cx = Float(self.frame.width/2)
         let cy = Float(self.frame.height/2)
         for label in titles {
@@ -54,8 +54,8 @@ public class Label3DView: UIView {
             label.font = UIFont.systemFontOfSize(fontSize)
             label.textColor = fontColor
             label.sizeToFit()
-            let rxz = RandomFloat(min: 0, max: PI_2)
-            let ry = RandomFloat(min: 0, max: PI_2)
+            let rxz = RandomFloat(min: 0, max: PI*2)
+            let ry = RandomFloat(min: 0, max: PI)
 //            let rz = RandomFloat(min: 0, max: PI_2)
             label.rxz = rxz
             label.ry = ry
@@ -77,9 +77,9 @@ public class Label3DView: UIView {
         return (d_rx, d_ry)
     }
     func handelPan(gesture: UIPanGestureRecognizer) {
-        let (d_rx, _) = panGestureCallback(gesture)
+        let (d_rx, d_ry) = panGestureCallback(gesture)
         scrollX(d_rx)
-//        scrollY(d_ry)
+        scrollY(d_ry)
     }
     // 绕着y轴转，和xz平面的夹角变，但是ry不变
     func scrollX(th:Float) {
@@ -89,8 +89,13 @@ public class Label3DView: UIView {
     }
     // TODO: 绕着x轴转，和yz平面的夹角变，但是rx不变
     func scrollY(th:Float) {
+        print("========== diff of scroll Y:\(th) ==========")
         for label in titles {
+            let old_ry = label.ry
+            let old_rxz = label.rxz
+            print("old ry:\(old_ry), old rxz:\(old_rxz)")
             label.ryz += th
+            print("new ry:\(label.ry), new rxz:\(label.rxz)")
         }
     }
 }
@@ -134,15 +139,31 @@ class LabelSphere: UILabel {
     var ryz:Float {
         get {
             let (_, py, pz) = getXYZ()
-            return atan(py/pz)
+            let pyz = sqrt(py*py + pz*pz)
+            let ryz = acos(pz/pyz)
+            let PI = Float(M_PI)
+            if py < 0 {
+                return 2*PI - ryz
+            } else {
+                return ryz
+            }
         }
         set {
             let pyz = sin(rx) * radius
-            let py = sin(ryz) * pyz
-            let pz = cos(ryz) * pyz
+            let py = sin(newValue) * pyz
+            let pz = cos(newValue) * pyz
             let px = cos(rx) * radius
-            ry = asin(py/radius)
-            rxz = atan(px/pz)
+            let pxz = sqrt(px*px + pz*pz)
+            
+            ry = acos(py/radius)
+            let PI = Float(M_PI)
+
+            let new_rxz = acos(pz/pxz)
+            if px < 0 {
+                rxz = 2*PI - new_rxz
+            }else {
+                rxz = new_rxz
+            }
         }
     }
     var rx:Float {
