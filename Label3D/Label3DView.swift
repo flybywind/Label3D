@@ -31,6 +31,7 @@ public class Label3DView: UIView {
     public var fontSize:CGFloat = 15
     public var fontColor:UIColor = UIColor.blackColor()
     public var sphereRadius:Float = 0.5
+    public var onEachLabelClicked : ((label:UILabel)->Void)?
     
     var titles = [LabelSphere]()
     var factorial = Factorial()
@@ -40,6 +41,7 @@ public class Label3DView: UIView {
             for t in lines {
                 let label = LabelSphere(text: t)
                 label.textAlignment = .Center
+                label.userInteractionEnabled = true
                 titles.append(label)
             }
         }
@@ -82,6 +84,8 @@ public class Label3DView: UIView {
             label.font = UIFont.systemFontOfSize(fontSize)
             label.textColor = fontColor
             label.sizeToFit()
+            label._clickEvent = onEachLabelClicked
+
             let rxz = locLabel[i].x
             let ry = locLabel[i].y
             label.rxz = Float(rxz)
@@ -119,6 +123,7 @@ public class Label3DView: UIView {
             label.ryz += th
         }
     }
+    
 }
 
 
@@ -195,6 +200,7 @@ class LabelSphere: UILabel {
             return acos(px/radius)
         }
     }
+    
     var perspective:Float {
         didSet {
             self.layer.transform.m34 = CGFloat(-1.0/perspective)
@@ -256,6 +262,16 @@ class LabelSphere: UILabel {
         alpha = max(0.1, alpha)
         return alpha
     }
+    
+    var _clickEvent:((label:UILabel)->Void)?
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if touches.first != nil {
+            self._clickEvent?(label: self)
+        }
+        
+    }
+    
 }
 
 public func RandomFloat(min min: Float, max: Float) -> Float {
