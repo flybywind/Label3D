@@ -41,7 +41,6 @@ public class Label3DView: UIView {
             for t in lines {
                 let label = LabelSphere(text: t)
                 label.textAlignment = .Center
-                label.userInteractionEnabled = true
                 titles.append(label)
             }
         }
@@ -84,8 +83,6 @@ public class Label3DView: UIView {
             label.font = UIFont.systemFontOfSize(fontSize)
             label.textColor = fontColor
             label.sizeToFit()
-            label._clickEvent = onEachLabelClicked
-
             let rxz = locLabel[i].x
             let ry = locLabel[i].y
             label.rxz = Float(rxz)
@@ -124,6 +121,25 @@ public class Label3DView: UIView {
         }
     }
     
+    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            let pos = touch.locationInView(self)
+            var zIndex = -Float.infinity
+            var topLabel:UILabel?
+            for l in titles {
+                if CGRectContainsPoint(l.frame, pos) {
+                    if Float(l.layer.zPosition) > zIndex {
+                        zIndex = Float(l.layer.zPosition)
+                        topLabel = l
+                    }
+                }
+            }
+            if topLabel != nil {
+                self.onEachLabelClicked?(label: topLabel!)
+            }
+        }
+        
+    }
 }
 
 
@@ -261,15 +277,6 @@ class LabelSphere: UILabel {
         alpha = min(1.0, alpha)
         alpha = max(0.1, alpha)
         return alpha
-    }
-    
-    var _clickEvent:((label:UILabel)->Void)?
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if touches.first != nil {
-            self._clickEvent?(label: self)
-        }
-        
     }
     
 }

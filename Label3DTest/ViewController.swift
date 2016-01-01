@@ -58,7 +58,6 @@ class ViewController: UIViewController {
     func clickEachLabel(label:UILabel) {
         let ac = UIAlertController(title: label.text!, message: labelDescription[label.text!],
             preferredStyle: .Alert)
-        print("label:\(label.text!) zPosition is \(label.layer.zPosition)")
         ac.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: {
             [unowned self] _ in
             self.dismissViewControllerAnimated(true, completion: nil)
