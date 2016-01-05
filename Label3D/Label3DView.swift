@@ -34,7 +34,6 @@ public class Label3DView: UIView {
     public var onEachLabelClicked : ((label:UILabel)->Void)?
     
     var titles = [LabelSphere]()
-    var factorial = Factorial()
     public func loadLabelsFromFile(fpath:String) {
         if let content = try? String(contentsOfFile: fpath, usedEncoding: nil) {
             let lines = content.componentsSeparatedByString("\n")
@@ -279,22 +278,4 @@ class LabelSphere: UILabel {
         return alpha
     }
     
-}
-
-public func RandomFloat(min min: Float, max: Float) -> Float {
-    return (Float(arc4random()) / Float(UInt32.max)) * (max - min) + min
-}
-
-public func Factorial() -> (Int -> UInt64) {
-    var ret = [Int:UInt64]()
-    ret[1] = 1
-    func inner(n:Int) -> UInt64 {
-        if let r = ret[n] {
-            return r
-        } else {
-            return UInt64(n)*inner(n-1)
-        }
-    }
-    
-    return inner
 }
