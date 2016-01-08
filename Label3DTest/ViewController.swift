@@ -33,7 +33,7 @@ class ViewController: UIViewController {
             label3dView?.fontColor = UIColor.yellowColor()
             label3dView?.sphereRadius = 0.3
             label3dView?.fontSize = 25
-            label3dView?.onEachLabelClicked = self.clickEachLabel 
+            label3dView?.onEachLabelClicked = self.clickEachLabel()
             label3dView?.resetLabelOnView()
         }
         
@@ -55,14 +55,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func clickEachLabel(label:UILabel) {
-        let ac = UIAlertController(title: label.text!, message: labelDescription[label.text!],
-            preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: {
-            [unowned self] _ in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        presentViewController(ac, animated: true, completion: nil)
+    func clickEachLabel() -> ((l:UILabel)->Void){
+        return {[unowned self] (label:UILabel) in
+            let ac = UIAlertController(title: label.text!, message: self.labelDescription[label.text!],
+                preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: {
+                [unowned self] _ in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                }))
+            self.presentViewController(ac, animated: true, completion: nil)
+        }
     }
 }
 
