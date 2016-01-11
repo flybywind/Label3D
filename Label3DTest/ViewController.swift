@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func clickEachLabel() -> ((l:UILabel)->Void){
+    func clickEachLabel() -> (UILabel->Void){
         return {[unowned self] (label:UILabel) in
             let ac = UIAlertController(title: label.text!, message: self.labelDescription[label.text!],
                 preferredStyle: .Alert)
