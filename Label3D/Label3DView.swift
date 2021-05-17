@@ -19,7 +19,7 @@ public class Label3DView: UIView {
     */
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        let panGesture = UIPanGestureRecognizer(target: self, action: "handelPan:")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handelPan(gesture:)))
         self.addGestureRecognizer(panGesture)
     }
 
@@ -29,24 +29,30 @@ public class Label3DView: UIView {
     
     public var perspective:Float = 2000
     public var fontSize:CGFloat = 15
-    public var fontColor:UIColor = UIColor.blackColor()
+    public var fontColor:UIColor = UIColor.black
     public var sphereRadius:Float = 0.5
-    public var onEachLabelClicked : ((label:UILabel)->Void)?
+    public var onEachLabelClicked : ((_ label:UILabel)->Void)?
+    
     
     var titles = [LabelSphere]()
     public func loadLabelsFromFile(fpath:String) {
-        if let content = try? String(contentsOfFile: fpath, usedEncoding: nil) {
-            let lines = content.componentsSeparatedByString("\n")
+        
+        do {
+            let content = try String(contentsOfFile:fpath, encoding: .utf8)
+            let lines = content.components(separatedBy: "\n")
             for t in lines {
                 let label = LabelSphere(text: t)
-                label.textAlignment = .Center
+                label.textAlignment = .center
                 titles.append(label)
             }
+        } catch  {
+            
         }
+
     }
     
     public func resetLabelOnView() {
-        let PI = Float(M_PI)
+        let PI = Float(Double.pi)
         let radius = sphereRadius*perspective
         let cx = Float(self.frame.width/2)
         let cy = Float(self.frame.height/2)
@@ -62,24 +68,27 @@ public class Label3DView: UIView {
             sum_circle += c
         }
         let dc = Float(titles.count)/sum_circle
-        var circle_num = [Int](count: circles.count, repeatedValue: 0)
+        var circle_num = [Int].init(repeating: 0, count: circles.count)
+       
         var sum_label = 0
         for i in 1 ..< Int(rowNum) {
             circle_num[i-1] = (Int(dc*circles[i-1]) + 1)
             sum_label += circle_num[i-1]
         }
-        var locLabel = [CGPoint](count:sum_label, repeatedValue: CGPoint())
+        
+        var locLabel = [CGPoint].init(repeating: CGPoint(), count: sum_label)
         var li = 0
-        for (i, cn) in circle_num.enumerate() {
+        for (i, cn) in circle_num.enumerated() {
             for j in 0 ..< cn {
                 locLabel[li].y = CGFloat(d_ry * Float(i+1))
-                locLabel[li++].x = CGFloat(2*PI/Float(cn)*Float(j))
+                locLabel[li].x = CGFloat(2*PI/Float(cn)*Float(j))
+                li+=1
             }
         }
         
-        for (i, label) in titles.enumerate() {
+        for (i, label) in titles.enumerated() {
             label.perspective = perspective
-            label.font = UIFont.systemFontOfSize(fontSize)
+            label.font = UIFont.systemFont(ofSize: fontSize)
             label.textColor = fontColor
             label.sizeToFit()
             let rxz = locLabel[i].x
@@ -94,18 +103,18 @@ public class Label3DView: UIView {
         }
     }
     // 可以继承该函数，修改旋转速度
-    public func panGestureCallback(gesture: UIPanGestureRecognizer) ->(Float,Float) {
-        let point = gesture.translationInView(self)
+    public func panGestureCallback(_ gesture: UIPanGestureRecognizer) ->(Float,Float) {
+        let point = gesture.translation(in: self)
         
         let d_rx = Float(point.x/self.frame.width)
         let d_ry = Float(point.y/self.frame.height)
         
         return (d_rx, d_ry)
     }
-    func handelPan(gesture: UIPanGestureRecognizer) {
+    @objc func handelPan(gesture: UIPanGestureRecognizer) {
         let (d_rx, d_ry) = panGestureCallback(gesture)
-        scrollX(d_rx)
-        scrollY(d_ry)
+        scrollX(th: d_rx)
+        scrollY(th: d_ry)
     }
     // 绕着y轴转，和xz平面的夹角变，但是ry不变
     func scrollX(th:Float) {
@@ -120,13 +129,13 @@ public class Label3DView: UIView {
         }
     }
     
-    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            let pos = touch.locationInView(self)
+            let pos = touch.location(in: self)
             var zIndex = -Float.infinity
             var topLabel:UILabel?
             for l in titles {
-                if CGRectContainsPoint(l.frame, pos) {
+                if l.frame.contains(pos) {
                     if Float(l.layer.zPosition) > zIndex {
                         zIndex = Float(l.layer.zPosition)
                         topLabel = l
@@ -134,11 +143,11 @@ public class Label3DView: UIView {
                 }
             }
             if topLabel != nil {
-                self.onEachLabelClicked?(label: topLabel!)
+                self.onEachLabelClicked?(topLabel!)
             }
         }
-        
     }
+
 }
 
 
@@ -182,7 +191,7 @@ class LabelSphere: UILabel {
             let (_, py, pz) = getXYZ()
             let pyz = sqrt(py*py + pz*pz)
             let ryz = acos(pz/pyz)
-            let PI = Float(M_PI)
+            let PI = Float(Double.pi)
             if py < 0 {
                 return 2*PI - ryz
             } else {
@@ -197,7 +206,7 @@ class LabelSphere: UILabel {
             let pxz = sqrt(px*px + pz*pz)
             
             ry = acos(py/radius)
-            let PI = Float(M_PI)
+            let PI = Float(Double.pi)
 
             let new_rxz = acos(pz/pxz)
             if px < 0 {
@@ -238,12 +247,12 @@ class LabelSphere: UILabel {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        rxz = aDecoder.decodeFloatForKey("rxz")
-        ry = aDecoder.decodeFloatForKey("ry")
-        cx = aDecoder.decodeFloatForKey("cx")
-        cy = aDecoder.decodeFloatForKey("cy")
-        radius = aDecoder.decodeFloatForKey("radius")
-        perspective = aDecoder.decodeFloatForKey("perspective")
+        rxz = aDecoder.decodeFloat(forKey: "rxz")
+        ry = aDecoder.decodeFloat(forKey: "ry")
+        cx = aDecoder.decodeFloat(forKey: "cx")
+        cy = aDecoder.decodeFloat(forKey: "cy")
+        radius = aDecoder.decodeFloat(forKey: "radius")
+        perspective = aDecoder.decodeFloat(forKey: "perspective")
         super.init(coder: aDecoder)
     }
     
@@ -252,7 +261,7 @@ class LabelSphere: UILabel {
         self.layer.position.x = CGFloat(sin(rxz) * pxz + cx)
         let old_pz = self.layer.zPosition
         self.layer.zPosition = CGFloat(cos(rxz) * pxz)
-        setTransform3D(self.layer.zPosition - old_pz)
+        setTransform3D(dz: self.layer.zPosition - old_pz)
         self.alpha = self.getAlpha()
     }
     
